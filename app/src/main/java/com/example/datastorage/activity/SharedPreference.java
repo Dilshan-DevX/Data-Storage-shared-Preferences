@@ -29,7 +29,7 @@ public class SharedPreference extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.passwordInput);
         Button submitBtn = findViewById(R.id.submitBtn);
 
-
+        checkIsLogin();
         submitBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,7 +51,7 @@ public class SharedPreference extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(SharedPreference.this, "Please Check Your details", Toast.LENGTH_SHORT).show();
-//                    Log.i( "Email: "+email+"Passwrd :"+password+);
+//
 
                 }
             }
@@ -59,5 +59,17 @@ public class SharedPreference extends AppCompatActivity {
 
 
 
+    }
+    private void checkIsLogin(){
+        SharedPreferences sharedPreference = getSharedPreferences(APP_DATA,MODE_PRIVATE);
+
+        boolean isLoggedIn = sharedPreference.getBoolean("isLoggedIn",false);
+        if(isLoggedIn){
+            Toast.makeText(this,"Already Logged In",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this,"Please Login",Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }
